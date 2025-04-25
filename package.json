@@ -1,0 +1,23 @@
+{
+  "name": "local-music-bot",
+  "version": "1.0.0",
+  "main": "app.js",
+  "scripts": {
+    "start": "electron .",
+    "build": "npx @electron/packager . Ambiance.mp3 --overwrite"
+  },
+  "author": "Diamssword",
+  "license": "MIT",
+  "description": "",
+  "dependencies": {
+    "@discord-player/extractor": "^7.1.0",
+    "discord-player": "^7.1.0",
+    "discord.js": "^14.18.0",
+    "dotenv": "^16.5.0",
+    "ffmpeg-static": "^5.2.0"
+  },
+  "devDependencies": {
+    "@electron/packager": "^18.3.6",
+    "electron": "^35.2.1"
+  }
+}
