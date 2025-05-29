@@ -33,6 +33,7 @@ async function findChannelOfUser(name) {
 
 var volume = 0.25;
 var lastFile;
+var lastName;
 // Define the execute function for the play command
 async function playSong(name, file) {
   var user = await findChannelOfUser(name);
@@ -50,16 +51,17 @@ async function playSong(name, file) {
     player.play(resource);
     connection.subscribe(player);
     lastFile=file;
-    player.on(AudioPlayerStatus.Idle, () => {
-      if(lastFile !=undefined)
-      playSong(name,lastFile);
-    });
+    lastName=name;
     return true;
   } catch (err) {
     console.error('Error playing audio:', err);
     connection.destroy();
   }
 }
+player.on(AudioPlayerStatus.Idle, () => {
+  if(lastFile !=undefined)
+    playSong(lastName,lastFile);
+});
 function pause() {
   if(player.state.status==AudioPlayerStatus.Paused)
     player.unpause()
